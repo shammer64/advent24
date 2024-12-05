@@ -38,7 +38,7 @@ public class Day1Test {
     public void givenTwoListsOfDiffLength_throwException() {
         long[] list1 = {8L, 19L};
         long[] list2 = {15L};
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(AssertionError.class,
                 () -> Day1.sumOfDiffs(list1, list2));
     }
 
@@ -76,10 +76,8 @@ public class Day1Test {
 
     private static class Day1 {
         public static long sumOfDiffs(long[] list1, long[] list2) {
-            assert(list1 != null && list2 != null);
-            if (list1.length != list2.length) {
-                throw new IllegalArgumentException("Lists must be of equal length");
-            }
+            assert list1 != null && list2 != null : "Lists must not be null";
+            assert list1.length == list2.length : "Lists must be of equal length";
             long sum = 0;
             Arrays.sort(list1);
             Arrays.sort(list2);
