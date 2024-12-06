@@ -1,14 +1,14 @@
-package dev.scothammer.advent.day1;
+package dev.scotthammer.advent.day1;
 
+import dev.scotthammer.advent.TestUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class Day1Ex1Test {
 
@@ -37,14 +37,14 @@ class Day1Ex1Test {
     void givenOneNullList_shouldThrowException() {
         long[] list1 = {10};
         long[] list2 = null;
-        assertThrows(AssertionError.class, () -> Day1.computeDiffs(list1, list2));
+        assertThrows(IllegalArgumentException.class, () -> Day1.computeDiffs(list1, list2));
     }
 
     @Test
     void givenAnotherNullList_shouldThrowException() {
         long[] list1 = null;
         long[] list2 = {10};
-        assertThrows(AssertionError.class, () -> Day1.computeDiffs(list1, list2));
+        assertThrows(IllegalArgumentException.class, () -> Day1.computeDiffs(list1, list2));
     }
 
     @Test
@@ -70,18 +70,14 @@ class Day1Ex1Test {
 
     @Test
     void givenDay1Input_computeResult() {
-        URL url = getClass().getClassLoader().getResource("day1-input.txt");
-        try {
-            assert url != null;
-            try (BufferedReader fileReader = new BufferedReader(new FileReader(url.getFile()))) {
-                List<Long[]> values = fileReader.lines()
-                        .map(line -> line.split("\\s+"))
-                        .map(strings -> new Long[] {Long.valueOf(strings[0]), Long.valueOf(strings[strings.length - 1])})
-                        .toList();
-                long[] list1 = values.stream().map(array -> array[0]).mapToLong(Long::longValue).toArray();
-                long[] list2 = values.stream().map(array -> array[1]).mapToLong(Long::longValue).toArray();
-                assertEquals(1388114, Day1.computeDiffs(list1, list2));
-            }
+        try (BufferedReader fileReader = TestUtil.getBufferedReader("day1-input.txt")) {
+            List<Long[]> values = fileReader.lines()
+                    .map(line -> line.split("\\s+"))
+                    .map(strings -> new Long[]{Long.valueOf(strings[0]), Long.valueOf(strings[strings.length - 1])})
+                    .toList();
+            long[] list1 = values.stream().map(array -> array[0]).mapToLong(Long::longValue).toArray();
+            long[] list2 = values.stream().map(array -> array[1]).mapToLong(Long::longValue).toArray();
+            assertEquals(1388114, Day1.computeDiffs(list1, list2));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

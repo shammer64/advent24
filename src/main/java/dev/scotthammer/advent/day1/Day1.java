@@ -1,12 +1,16 @@
-package dev.scothammer.advent.day1;
+package dev.scotthammer.advent.day1;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Day1 {
+    private Day1() {
+    }
+
     public static long computeDiffs(long[] list1, long[] list2) {
-        assert list1 != null && list2 != null : "Lists must not be null";
+        if (list1 == null || list2 == null)
+            throw new IllegalArgumentException("Lists must not be null");
         long sum = 0;
         Arrays.sort(list1);
         Arrays.sort(list2);
