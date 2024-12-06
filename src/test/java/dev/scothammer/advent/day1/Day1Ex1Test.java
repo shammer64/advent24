@@ -10,67 +10,67 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Day1Ex1Test {
+class Day1Ex1Test {
 
     @Test
-    public void givenTwoEmptyLists_resultShouldBeZero() {
+    void givenTwoEmptyLists_resultShouldBeZero() {
         long[] list1 = new long[0];
         long[] list2 = new long[0];
         assertEquals(0, Day1.computeDiffs(list1, list2));
     }
 
     @Test
-    public void givenTwoSingleItemLists_resultShouldBeDiffOfTwoItems() {
+    void givenTwoSingleItemLists_resultShouldBeDiffOfTwoItems() {
         long[] list1 = {15};
         long[] list2 = {10};
         assertEquals(5, Day1.computeDiffs(list1, list2));
     }
 
     @Test
-    public void givenTwoSingleItemListsReversed_resultShouldBeDiffOfTwoItems() {
+    void givenTwoSingleItemListsReversed_resultShouldBeDiffOfTwoItems() {
         long[] list1 = {10};
         long[] list2 = {15};
         assertEquals(5, Day1.computeDiffs(list1, list2));
     }
 
     @Test
-    public void givenOneNullList_shouldThrowException() {
+    void givenOneNullList_shouldThrowException() {
         long[] list1 = {10};
         long[] list2 = null;
         assertThrows(AssertionError.class, () -> Day1.computeDiffs(list1, list2));
     }
 
     @Test
-    public void givenAnotherNullList_shouldThrowException() {
+    void givenAnotherNullList_shouldThrowException() {
         long[] list1 = null;
         long[] list2 = {10};
         assertThrows(AssertionError.class, () -> Day1.computeDiffs(list1, list2));
     }
 
     @Test
-    public void givenTwoSortedTwoItemLists_resultShouldBeDiffOfItems() {
+    void givenTwoSortedTwoItemLists_resultShouldBeDiffOfItems() {
         long[] list1 = {15, 60};
         long[] list2 = {10, 25};
         assertEquals(40, Day1.computeDiffs(list1, list2));
     }
 
     @Test
-    public void givenTwoUnsortedTwoItemLists_resultShouldBeDiffOfItems() {
+    void givenTwoUnsortedTwoItemLists_resultShouldBeDiffOfItems() {
         long[] list1 = {27, 19};
         long[] list2 = {10, 25};
         assertEquals(11, Day1.computeDiffs(list1, list2));
     }
 
     @Test
-    public void givenSampleDataAsLists_resultShouldBeDiffOfItems() {
+    void givenSampleDataAsLists_resultShouldBeDiffOfItems() {
         long[] list1 = {3, 4, 2, 1, 3, 3};
         long[] list2 = {4, 3, 5, 3, 9, 3};
         assertEquals(11, Day1.computeDiffs(list1, list2));
     }
 
     @Test
-    public void givenDay1Input_computeResult() {
-        URL url = getClass().getClassLoader().getResource("day1-1-input.txt");
+    void givenDay1Input_computeResult() {
+        URL url = getClass().getClassLoader().getResource("day1-input.txt");
         try {
             assert url != null;
             try (BufferedReader fileReader = new BufferedReader(new FileReader(url.getFile()))) {

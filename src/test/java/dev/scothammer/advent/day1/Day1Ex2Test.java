@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Day1Ex2Test {
+class Day1Ex2Test {
 
     @Test
     void givenTwoEmptyLists_resultShouldBeZero() {
@@ -48,8 +48,8 @@ public class Day1Ex2Test {
     }
 
     @Test
-    public void givenDay1Input_computeResult() {
-        URL url = getClass().getClassLoader().getResource("day1-1-input.txt");
+    void givenDay1Input_computeResult() {
+        URL url = getClass().getClassLoader().getResource("day1-input.txt");
         try {
             assert url != null;
             try (BufferedReader fileReader = new BufferedReader(new FileReader(url.getFile()))) {
