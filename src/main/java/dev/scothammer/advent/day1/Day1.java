@@ -1,6 +1,8 @@
 package dev.scothammer.advent.day1;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Day1 {
     public static long computeDiffs(long[] list1, long[] list2) {
@@ -14,5 +16,20 @@ public class Day1 {
             }
         }
         return sum;
+    }
+
+    public static long computeSimilarity(long[] list1, long[] list2) {
+        long similarity = 0;
+        Map<Long, Long> map = new HashMap<>();
+        for (long value : list2) {
+            map.put(value, map.getOrDefault(value, 0L) + 1);
+        }
+
+        for (long value : list1) {
+            if (map.containsKey(value)) {
+                similarity += value * map.getOrDefault(value, 0L);
+            }
+        }
+        return similarity;
     }
 }
