@@ -102,7 +102,7 @@ class Day2Ex1Test {
     void puzzleInputAnswer() {
         try (BufferedReader fileReader = TestUtil.getBufferedReader("day2-input.txt")) {
             String[] reportInput = fileReader.lines().toArray(String[]::new);
-            assertEquals(421, Day2.countSafeReports(reportInput));
+            assertEquals(421, Day2.countSafeReports(reportInput, Day2::isReportSafe));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
