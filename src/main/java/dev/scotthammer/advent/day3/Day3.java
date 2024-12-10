@@ -14,8 +14,29 @@ class Day3 {
         List<Instruction> instructions = new ArrayList<>();
         int startIndex = 0;
         while (matcher.find(startIndex)) {
-            instructions.add(new Instruction(matcher.group()));
+            String group = matcher.group();
+            instructions.add(new Instruction(group));
             startIndex = matcher.end();
+        }
+
+        return instructions.toArray(new Instruction[0]);
+    }
+
+    public static Instruction[] parseEnabledInstructions(String input) {
+        Pattern pattern = Pattern.compile("do\\(\\)|don't\\(\\)|mul\\(\\d{1,3},\\d{1,3}\\)");
+        Matcher matcher = pattern.matcher(input);
+        List<Instruction> instructions = new ArrayList<>();
+        int startIndex = 0;
+        boolean doing = true;
+        while (matcher.find(startIndex)) {
+            String group = matcher.group();
+            startIndex = matcher.end();
+            if (group.startsWith("do")) {
+                doing = group.equals("do()") ;
+                continue;
+            }
+            if (doing)
+                instructions.add(new Instruction(group));
         }
 
         return instructions.toArray(new Instruction[0]);
