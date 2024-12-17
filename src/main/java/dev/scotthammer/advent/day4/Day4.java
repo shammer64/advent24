@@ -1,5 +1,8 @@
 package dev.scotthammer.advent.day4;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -99,5 +102,24 @@ public class Day4 {
             count++;
         }
         return count;
+    }
+
+    private static final Set<String> MASSAM = new HashSet<>(List.of("MAS", "SAM"));
+    public static long countCrossMas(String[] input) {
+        if (input[0].length() < 3 || input.length < 3) return 0;
+        long count = 0;
+
+        for (int y = 0; y < input.length - 2; y++) {
+            for (int x = 0; x < input[0].length() - 2; x++) {
+                if (containsCross(input, y, x)) count++;
+            }
+        }
+        return count;
+    }
+
+    private static boolean containsCross(String[] input, int y, int x) {
+        String leg1 = String.valueOf(new char[]{input[y].charAt(x), input[y + 1].charAt(x + 1), input[y + 2].charAt(x + 2)});
+        String leg2 = String.valueOf(new char[]{input[y + 2].charAt(x), input[y + 1].charAt(x + 1), input[y].charAt(x + 2)});
+        return MASSAM.contains(leg1) && MASSAM.contains(leg2);
     }
 }

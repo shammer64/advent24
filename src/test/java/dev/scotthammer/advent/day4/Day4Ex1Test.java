@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Day4Ex1Test {
 
-    private static final String[] EXAMPLE = {
+    protected static final String[] EXAMPLE = {
             "MMMSXXMASM",
             "MSAMXMSMSA",
             "AMXSXMAAMM",
